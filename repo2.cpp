@@ -18,9 +18,9 @@ void bubble_sort(double x[], int index[], int n){
     for(int i=0; i<n-1; i++){
         for(int j=n-1; j>i; j--){
             if(x[j] > x[j-1]){ //swap
-                hold = x[j];
+                hold = x[j]; //hold x[i]
                 hold_num = index[j];
-                x[j] = x[j-1];
+                x[j] = x[j-1]; // change value
                 index[j] = index[j-1];
                 x[j-1] = hold;
                 index[j-1] = hold_num;
@@ -32,7 +32,7 @@ void bubble_sort(double x[], int index[], int n){
 
 
 int main(void){
-    //initialize valuable(x1 ~ x4)
+    //initialize value(x1 ~ x4)
     int x[N] = {0};
     //weight
     int weight[N] = {3, 1, 5, 4};
@@ -76,37 +76,25 @@ int main(void){
     printf("\n");
     printf("初期値(欲張り法による目的関数値) : %d\n",sum);
     int ans_sum = sum;
-    /*
-    printf("\nx[N]\tvalue[N]\tweight[N]");
-    for(int i=0;i<N;i++){
-        printf("\n%d\t%d\t%d",x[i], value[i], weight[i]);
-    }
-    printf("\n"); //new line
-    */
 
-    int hold;
-    b = 6;
+    int hold; // define hold value for swap 
+    b = 6; //initialize b as 6
 
-    for(int i=0;i<N-1;i++){
+    for(int i=0;i<N-1;i++){ //swap x value
         for(int j=i;j<N-1;j++){
             int pre_b = 0;
             int pre_sum = 0;
             hold = x[i];
             x[i] = x[j+1];
             x[j+1] = hold;
-            //printf("\n%d\t%d\t%d\t%d\n",x[0], x[1], x[2], x[3]); //for debug
-            for(int k=0;k<N;k++){
+            for(int k=0;k<N;k++){ //calculate b and sum value
                 pre_b =pre_b + weight[k] * x[k];
                 pre_sum = pre_sum + value[k] * x[k];
             }
-            //printf("pre_b = %d",pre_b); //display pre_b for debug
-            //printf("\npre_sum = %d\n",pre_sum); //display pre_sum for debug
-            //printf("b = %d\n",b);
             if(b >= pre_b){
-                if(pre_sum > ans_sum){
-                    //printf("x[N] changed!!\n"); //for dubug
+                if(pre_sum > ans_sum){ // decide new x value
                     ans_sum = pre_sum;
-                    for(int p=0;p<N;p++){
+                    for(int p=0;p<N;p++){ // memorize new x value
                         x_ans[p] = x[p];
                     }
                 }
@@ -114,17 +102,7 @@ int main(void){
             hold = x[i]; 
             x[i] = x[j+1];
             x[j+1] = hold;
-            /*
-           printf("\nx(x1, x2,x3. x4) = ");
-           for(int p=0;p<N;p++){
-               printf("%d, ",x[p]);
-            }
-            printf("\nx_ans(x1, x2, x3, x4) = ");
-            for(int p=0;p<N;p++){
-                printf("%d, ",x_ans[p]);
-            }*/
         }
-        //printf("\n------------------------j loop finish ----------------------\n"); //for debug
     }
     printf("\n交換近傍，最適移動戦略により得られた近似解 : (x1, x2, x3, x4) = ");
     for(int i=0;i<N;i++){

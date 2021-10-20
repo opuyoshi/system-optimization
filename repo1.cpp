@@ -24,10 +24,10 @@ void bubble_sort(double x[], int index[], int n){
     for(int i=0; i<n-1; i++){
         for(int j=n-1; j>i; j--){
             if(x[j] > x[j-1]){//swap 
-                hold = x[j];
-                hold_num = index[j];
-                x[j] = x[j-1];
-                index[j] = index[j-1];
+                hold = x[j]; // hold x[i]
+                hold_num = index[j]; // hold index[i]
+                x[j] = x[j-1]; //change value
+                index[j] = index[j-1]; // change value
                 x[j-1] = hold;
                 index[j-1] = hold_num;
             }
@@ -38,7 +38,7 @@ void bubble_sort(double x[], int index[], int n){
 
 
 int main(void){
-    //initialize valuable(x1 ~ x4)
+    //initialize value(x1 ~ x4)
     int x[N] = {0};
     //weight
     int weight[N] = {3, 1, 5, 4};
@@ -63,7 +63,7 @@ int main(void){
     for(int i=0; i<N;i++){//put item in greedy algorithms
         if(weight[index[i]] <= b){
             x[index[i]] = 1;
-            b = b - weight[index[i]];
+            b = b - weight[index[i]]; 
         }
         else x[index[i]] = 0;
     }
